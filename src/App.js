@@ -9,7 +9,6 @@ import ballet4 from "./medias/ballet4.jpeg";
 import ballet5 from "./medias/ballet5.jpeg";
 import ballet6 from "./medias/ballet6.jpeg";
 import ballet7 from "./medias/ballet7.jpeg";
-import ballet8 from "./medias/ballet8.jpeg";
 import video from "./medias/video.mp4";
 
 function App() {
@@ -26,11 +25,9 @@ function App() {
     { tipo: "imagem", src: ballet3 }
   ];
 
-
-  // contador de dias
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
-  
+
   const [meses, setMeses] = useState(0);
   const [semanas, setSemanas] = useState(0);
   const [dias, setDias] = useState(0);
@@ -38,7 +35,7 @@ function App() {
   const [minutos, setMinutos] = useState(0);
   const [segundos, setSegundos] = useState(0);
 
-  // contador de tempo
+  // CONTADOR
   useEffect(() => {
 
     const dataInicial = new Date("2026-07-21");
@@ -65,7 +62,6 @@ function App() {
       setHoras(horasCalc);
       setMinutos(minutosCalc);
       setSegundos(segundosCalc);
-
     };
 
     calcularTempo();
@@ -75,7 +71,8 @@ function App() {
     return () => clearInterval(intervalo);
 
   }, []);
-  // troca de fotos e vídeos
+
+  // TROCA DE FOTOS
   useEffect(() => {
 
     const intervalo = setInterval(() => {
@@ -91,101 +88,157 @@ function App() {
 
     return () => clearInterval(intervalo);
 
-  }, []);
+  }, [midia.length]);
+
 
   return (
     <Body>
 
       <Musica>
         <iframe
-          style={{ borderRadius: "12px" }}
           src="https://open.spotify.com/embed/track/5y2ijHECwFYWqcAHKTZgzD?utm_source=generator&si=466ac01fdd4c4c67"
-          width="100%"
-          height="100%"
-          title="video"
+          title="Música"
           allowFullScreen
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
         />
       </Musica>
 
-      <Imagem>
+
+      <Imagem $fade={fade}>
 
         {midia[index].tipo === "imagem" ? (
 
           <img
-            className={fade ? "fade-in" : "fade-out"}
             src={midia[index].src}
-            alt="foto"
+            alt="Foto do casal"
           />
 
         ) : (
 
           <video
-            className={fade ? "fade-in" : "fade-out"}
             src={midia[index].src}
             autoPlay
             muted
             loop
+            playsInline
           />
 
         )}
 
       </Imagem>
 
+
       <Top>
-        <h1> O tempo não passa já estou há {dias} dias, {horas} horas, {minutos} minutos e {segundos} segundos sem te ver ❤️</h1>
+        <h1>
+          O tempo não passa...
+          <br />
+          Já estou há <strong>{dias}</strong> dias,{" "}
+          <strong>{horas}</strong> horas,{" "}
+          <strong>{minutos}</strong> minutos e{" "}
+          <strong>{segundos}</strong> segundos sem te ver ❤️
+        </h1>
       </Top>
 
+
       <Titulo>
-        <h1>Para a minha mulher preferida e amor da minha vida</h1>
+        <h1>
+          Para a minha mulher preferida
+          <br />
+          e amor da minha vida ❤️
+        </h1>
       </Titulo>
+
 
       <Textinho>
         <h3>
           Amor, te amo muito e admiro você do fundo do meu coração.
-          Você é incrível, inteligente e perfeita como pessoa e em tudo em que se propõe a fazer.
-          Amo tudo em você, desde as suas unhas até o seu cabelo, pricipalmente o abdômen HEHEHEHE.
-          Eu poderia ficar horas aqui falando o quanto eu amo cada detalhe seu. Mas enfim, bem simples
-          mas fiz porque te amo minha futura esposa, espero que você abra isso aqui sem eu falar.
+          Você é incrível, inteligente e perfeita como pessoa e em tudo
+          em que se propõe a fazer.
+          Amo tudo em você, desde as suas unhas até o seu sorriso,
+          principalmente o abdômen ksksksksk.
+          Eu poderia ficar horas aqui falando o quanto eu amo cada detalhe seu.
         </h3>
       </Textinho>
+
     </Body>
   );
 }
 
+
+// ==========================
+// BODY
+// ==========================
+
 const Body = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-background-color: #0f0f1a;
-min-height: 100vh;
-`
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: #0f0f1a;
+
+  box-sizing: border-box;
+
+  overflow-x: hidden;
+
+  padding-bottom: 50px;
+`;
+
+
+// ==========================
+// SPOTIFY
+// ==========================
 
 const Musica = styled.div`
-height: 80px;
-width: 90%;
-padding-top: 20px;
-border: none;
-`
+  width: 90%;
+  max-width: 700px;
+  height: 80px;
+
+  margin-top: 20px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 600px) {
+    width: 92%;
+    height: 80px;
+    margin-top: 15px;
+  }
+`;
+
+
+// ==========================
+// IMAGEM
+// ==========================
 
 const Imagem = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   width: 80%;
   max-width: 900px;
+
   height: 500px;
 
   margin-top: 50px;
   padding: 8px;
 
-  background: #11111F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #11111f;
+
   border-radius: 24px;
 
   overflow: hidden;
+
+  box-sizing: border-box;
 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 
@@ -193,57 +246,213 @@ const Imagem = styled.div`
   video {
     width: 100%;
     height: 100%;
+
     object-fit: contain;
+
     border-radius: 18px;
+
+    opacity: ${({ $fade }) => ($fade ? 1 : 0)};
 
     transition: opacity 0.3s ease;
   }
 
+
+  /* TABLET */
+
   @media (max-width: 768px) {
+
     width: 90%;
-    height: 400px;
-    margin-top: 30px;
+    height: 450px;
+
+    margin-top: 35px;
+
+    border-radius: 20px;
+
+    img,
+    video {
+      border-radius: 15px;
+    }
   }
 
+
+  /* CELULAR */
+
   @media (max-width: 480px) {
-    width: 90%;
-    height: 350px;
+
+    width: 92%;
+
+    height: 430px;
+
+    margin-top: 25px;
+
+    padding: 5px;
+
+    border-radius: 18px;
+
+    img,
+    video {
+      border-radius: 14px;
+    }
+  }
+
+
+  /* CELULAR PEQUENO */
+
+  @media (max-width: 380px) {
+
+    height: 360px;
+
   }
 `;
 
+
+// ==========================
+// CONTADOR
+// ==========================
+
 const Top = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-font-size: 10px;
-color: #F6F6FA;
-margin-top: 20px;
-`
+  width: 90%;
+  max-width: 850px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  color: #f6f6fa;
+
+  margin-top: 25px;
+
+  h1 {
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 400;
+
+    margin: 0;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+
+  @media (max-width: 600px) {
+
+    width: 90%;
+
+    margin-top: 20px;
+
+    h1 {
+      font-size: 17px;
+      line-height: 1.6;
+    }
+  }
+
+
+  @media (max-width: 380px) {
+
+    h1 {
+      font-size: 15px;
+    }
+  }
+`;
+
+
+// ==========================
+// TÍTULO
+// ==========================
 
 const Titulo = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-padding-top: 40px;
-font-size: 15px;
-color: #F6F6FA;
-`
+  width: 90%;
+  max-width: 800px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  color: #f6f6fa;
+
+  padding-top: 45px;
+
+  h1 {
+    font-size: 30px;
+    line-height: 1.3;
+
+    margin: 0;
+  }
+
+
+  @media (max-width: 600px) {
+
+    padding-top: 35px;
+
+    h1 {
+      font-size: 24px;
+      line-height: 1.35;
+    }
+  }
+
+
+  @media (max-width: 380px) {
+
+    h1 {
+      font-size: 21px;
+    }
+  }
+`;
+
+
+// ==========================
+// TEXTO
+// ==========================
 
 const Textinho = styled.div`
-display: flex;
-justify-content: center;
-text-align: left;
-width: 80%;
-max-width: 600px;
-padding: 20px;
-color: #5C626D;
+  width: 80%;
+  max-width: 650px;
 
-h3{
-  line-height: 1.6;
-  font-weight: 400;
-}
-`
+  display: flex;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  color: #8a8f9b;
+
+  h3 {
+    line-height: 1.7;
+    font-size: 17px;
+    font-weight: 400;
+
+    margin: 0;
+  }
+
+
+  @media (max-width: 600px) {
+
+    width: 92%;
+
+    padding: 15px 5px;
+
+    h3 {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+  }
+
+
+  @media (max-width: 380px) {
+
+    h3 {
+      font-size: 14px;
+    }
+  }
+`;
+
 
 export default App;
