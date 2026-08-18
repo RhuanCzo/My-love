@@ -21,7 +21,7 @@ function App() {
     { tipo: "imagem", src: ballet4 },
     { tipo: "imagem", src: ballet5 },
     { tipo: "imagem", src: ballet6 },
-    { tipo: "imgagem", src: ballet7 },
+    { tipo: "imagem", src: ballet7 },
     { tipo: "video", src: video },
     { tipo: "imagem", src: ballet3 }
   ];
@@ -145,8 +145,9 @@ function App() {
         <h3>
           Amor, te amo muito e admiro você do fundo do meu coração.
           Você é incrível, inteligente e perfeita como pessoa e em tudo em que se propõe a fazer.
-          Amo tudo em você, desde as suas unhas até o seu sorriso, pricipalmente o abdômen ksksksksk.
-          Eu poderia ficar horas aqui falando o quanto eu amo cada detalhe seu.
+          Amo tudo em você, desde as suas unhas até o seu cabelo, pricipalmente o abdômen HEHEHEHE.
+          Eu poderia ficar horas aqui falando o quanto eu amo cada detalhe seu. Mas enfim, bem simples
+          mas fiz porque te amo minha futura esposa, espero que você abra isso aqui sem eu falar.
         </h3>
       </Textinho>
     </Body>
@@ -170,24 +171,45 @@ border: none;
 `
 
 const Imagem = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 20px;
-margin-top: 50px;
-height: 500px;
-width: 80%;
-background-color: #11111F;
-padding: 5px;
-overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-img, video {
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-`
+  width: 80%;
+  max-width: 900px;
+  height: 500px;
+
+  margin-top: 50px;
+  padding: 8px;
+
+  background: #11111F;
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  img,
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 18px;
+
+    transition: opacity 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    height: 400px;
+    margin-top: 30px;
+  }
+
+  @media (max-width: 480px) {
+    width: 90%;
+    height: 350px;
+  }
+`;
 
 const Top = styled.div`
 display: flex;
@@ -212,7 +234,7 @@ color: #F6F6FA;
 const Textinho = styled.div`
 display: flex;
 justify-content: center;
-text-align: center;
+text-align: left;
 width: 80%;
 max-width: 600px;
 padding: 20px;
